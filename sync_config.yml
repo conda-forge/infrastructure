@@ -1,0 +1,34 @@
+group:
+  # Dependabot
+  - repos: |
+      channel-mirrors/conda-oci-mirror
+      channel-mirrors/mirrormirror
+      conda-forge/admin-migrations
+      conda-forge/admin-requests
+      conda-forge/artifact-validation
+      conda-forge/automerge-action
+      conda-forge/by-the-numbers
+      conda-forge/conda-forge-lockfiles
+      conda-forge/conda-forge-webservices
+      conda-forge/conda-forge.github.io
+      conda-forge/core-notes
+      conda-forge/docker-images
+      conda-forge/feedstock-outputs
+      conda-forge/miniforge
+      conda-forge/miniforge-images
+      conda-forge/setup-miniforge
+      conda-forge/staged-recipes
+      conda-forge/webservices-dispatch-action
+      regro/cf-scripts
+      regro/conda-forge-feedstock-check-solvable
+      regro/conda-forge-metadata
+    files:
+      - source: configs/dependabot.yml
+        dest: .github/dependabot.yml
+
+  # Keep Alive workflow
+  - repos: |
+      conda-forge/docker-images
+    files:
+      - source: worfklows/keep-alive.yml
+        dest: .github/workflows/keep-alive.yml
