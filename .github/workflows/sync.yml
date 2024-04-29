@@ -28,5 +28,5 @@ jobs:
           #   sync
           CONFIG_PATH: sync_config.yml
           COMMIT_EACH_FILE: false
-          GIT_USERNAME: conda-forge-admin
-          GIT_EMAIL: conda-forge-admin@users.noreply.github.com
+          GIT_USERNAME: conda-forge-bot
+          GIT_EMAIL: conda-forge-bot@users.noreply.github.com
