@@ -1,3 +1,7 @@
+# This file is automatically kept in sync
+# via conda-forge/infrastructure. If you need
+# to change anything here, please consider doing
+# it with a PR in that repository instead.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
