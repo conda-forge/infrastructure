@@ -27,7 +27,9 @@ group:
   # Keep Alive workflow
   - repos: |
       conda-forge/cf-autotick-bot-test-package-feedstock
+    # conda-forge/automerge-action
     # conda-forge/docker-images
+    # conda-forge/webservices-dispatch-action
     files:
       - source: worfklows/keep-alive.yml
         dest: .github/workflows/keep-alive.yml
