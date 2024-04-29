@@ -1,8 +1,8 @@
+# This configuration file is used by the sync.yml workflow in this repository.
+# Check BetaHuhn/repo-file-sync-action for more details.
 group:
   # Dependabot
   - repos: |
-      channel-mirrors/conda-oci-mirror
-      channel-mirrors/mirrormirror
       conda-forge/admin-migrations
       conda-forge/admin-requests
       conda-forge/artifact-validation
@@ -19,9 +19,6 @@ group:
       conda-forge/setup-miniforge
       conda-forge/staged-recipes
       conda-forge/webservices-dispatch-action
-      regro/cf-scripts
-      regro/conda-forge-feedstock-check-solvable
-      regro/conda-forge-metadata
     files:
       - source: configs/dependabot.yml
         dest: .github/dependabot.yml
