@@ -19,9 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b  # v4.1.4
+      - name: Generate token
+        id: generate_token
+        uses: actions/create-github-app-token@7bfa3a4717ef143a604ee0a99d859b8886a96d00  # v1.9.3
+        with:
+          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - uses: BetaHuhn/repo-file-sync-action@3023dac7ce66c18b119e2012348437eadeaea116  # v1.21.0
         with:
-          GH_PAT: ${{ secrets.INFRASTRUCTURE_SYNC_TOKEN }}
+          GH_INSTALLATION_TOKEN: ${{ steps.generate_token.outputs.token }}
           # Reenable after testing
           # PR_LABELS: |
           #   automerge
