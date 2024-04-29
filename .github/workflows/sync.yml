@@ -22,9 +22,10 @@ jobs:
       - uses: BetaHuhn/repo-file-sync-action@3023dac7ce66c18b119e2012348437eadeaea116  # v1.21.0
         with:
           GH_PAT: ${{ secrets.INFRASTRUCTURE_SYNC_TOKEN }}
-          PR_LABELS: |
-            automerge
-            sync
+          # Reenable after testing
+          # PR_LABELS: |
+          #   automerge
+          #   sync
           CONFIG_PATH: sync_config.yml
           COMMIT_EACH_FILE: false
           GIT_USERNAME: conda-forge-admin
