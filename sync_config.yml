@@ -20,7 +20,7 @@ group:
       conda-forge/staged-recipes
       conda-forge/webservices-dispatch-action
     files:
-      - source: configs/dependabot.yml
+      - source: .github/dependabot.yml
         dest: .github/dependabot.yml
 
   # Keep Alive workflow
