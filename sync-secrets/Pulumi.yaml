@@ -1,0 +1,38 @@
+name: sync-secrets
+description: sync secrets from 1Password to GH
+runtime: yaml
+config:
+  'pulumi:tags': {value: {'pulumi:template': yaml}}
+  github:owner:
+        value: conda-forge
+variables:
+  cirun-api-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cirun-api-key
+        vault: pulumi
+  repo-admin-requests:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/admin-requests
+resources:
+  onepassword-provider:
+    type: pulumi:providers:onepassword
+    options:
+      version: 1.1.4
+      pluginDownloadURL: github://api.github.com/1Password/
+  gh-org-secret-cirun-api-key:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: true
+    properties:
+      secretName: CIRUN_API_KEY
+      plaintextValue: ${cirun-api-key.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-requests.repoId}
+outputs: {}
