@@ -28,7 +28,7 @@ resources:
     options:
       protect: false
       retainOnDelete: true
-      deleteBeforeReplace: true
+      deleteBeforeReplace: false
     properties:
       secretName: CIRUN_API_KEY
       plaintextValue: ${cirun-api-key.credential}
