@@ -12,11 +12,46 @@ variables:
       arguments:
         title: cirun-api-key
         vault: pulumi
+  repo-admin-migrations:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/admin-migrations
   repo-admin-requests:
     fn::invoke:
       function: github:getRepository
       arguments:
         fullName: conda-forge/admin-requests
+  repo-automerge-action:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/automerge-action
+  repo-by-the-numbers:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/by-the-numbers
+  repo-core-notes:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/core-notes
+  repo-conda-forge-feedstock-ops:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/conda-forge-feedstock-ops
+  repo-conda-forge-webservices:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/conda-forge-webservices
+  repo-webservices-dispatch-action:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/webservices-dispatch-action
 resources:
   onepassword-provider:
     type: pulumi:providers:onepassword
