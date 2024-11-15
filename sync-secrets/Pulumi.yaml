@@ -6,23 +6,270 @@ config:
   github:owner:
         value: conda-forge
 variables:
+  azure-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: azure-token
+        vault: pulumi
+  cf-admin-github-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-admin-github-token
+        vault: pulumi
+  cf-admin-travis-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-admin-travis-token
+        vault: pulumi
+  cf-bot-dh-password:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-bot-dh-password
+        vault: pulumi
+  cf-curator-app-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-curator-app-id
+        vault: pulumi
+  cf-curator-private-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-curator-private-key
+        vault: pulumi
+  cf-daemon-travis-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-daemon-travis-token
+        vault: pulumi
+  cf-linter-travis-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-linter-travis-token
+        vault: pulumi
+  cf-webservices-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-webservices-token
+        vault: pulumi
   cirun-api-key:
     fn::invoke:
       function: onepassword:getItem
       arguments:
         title: cirun-api-key
         vault: pulumi
+  heroku-api-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: heroku-api-key
+        vault: pulumi
+  heroku-only-staging-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: heroku-only-staging-binstar-token
+        vault: pulumi
+  orgwide-travis-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: orgwide-travis-token
+        vault: pulumi
+  prod-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: prod-binstar-token
+        vault: pulumi
+  staging-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: staging-binstar-token
+        vault: pulumi
+
+  repo-admin-migrations:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/admin-migrations
   repo-admin-requests:
     fn::invoke:
       function: github:getRepository
       arguments:
         fullName: conda-forge/admin-requests
+  repo-automerge-action:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/automerge-action
+  repo-by-the-numbers:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/by-the-numbers
+  repo-core-notes:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/core-notes
+  repo-conda-forge-feedstock-ops:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/conda-forge-feedstock-ops
+  repo-conda-forge-webservices:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/conda-forge-webservices
+  repo-webservices-dispatch-action:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/webservices-dispatch-action
 resources:
   onepassword-provider:
     type: pulumi:providers:onepassword
     options:
       version: 1.1.4
       pluginDownloadURL: github://api.github.com/1Password/
+  gh-org-secret-azure-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: AZURE_TOKEN
+      plaintextValue: ${azure-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-requests.repoId}
+        - ${repo-admin-migrations.repoId}
+  gh-org-secret-cf-admin-github-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_ADMIN_GITHUB_TOKEN
+      plaintextValue: ${cf-admin-github-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-requests.repoId}
+        - ${repo-admin-migrations.repoId}
+        - ${repo-conda-forge-webservices.repoId}
+  gh-org-secret-cf-admin-travis-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_ADMIN_TRAVIS_TOKEN
+      plaintextValue: ${cf-admin-travis-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-requests.repoId}
+  gh-org-cf-bot-dh-password:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_BOT_DH_PASSWORD
+      plaintextValue: ${cf-bot-dh-password.password}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+        - ${repo-webservices-dispatch-action.repoId}
+        - ${repo-automerge-action.repoId}
+        - ${repo-conda-forge-feedstock-ops.repoId}
+  gh-org-secret-cf-curator-app-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_CURATOR_APP_ID
+      plaintextValue: ${cf-curator-app-id.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-requests.repoId}
+        - ${repo-admin-migrations.repoId}
+        - ${repo-automerge-action.repoId}
+        - ${repo-by-the-numbers.repoId}
+        - ${repo-core-notes.repoId}
+        - ${repo-conda-forge-webservices.repoId}
+        - ${repo-webservices-dispatch-action.repoId}
+  gh-org-secret-cf-curator-private-key:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_CURATOR_PRIVATE_KEY
+      plaintextValue: ${cf-curator-private-key.privateKey}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-requests.repoId}
+        - ${repo-admin-migrations.repoId}
+        - ${repo-automerge-action.repoId}
+        - ${repo-by-the-numbers.repoId}
+        - ${repo-core-notes.repoId}
+        - ${repo-conda-forge-webservices.repoId}
+        - ${repo-webservices-dispatch-action.repoId}
+  gh-org-secret-cf-daemon-travis-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_DAEMON_TRAVIS_TOKEN
+      plaintextValue: ${cf-daemon-travis-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-migrations.repoId}
+  gh-org-secret-cf-linter-travis-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_LINTER_TRAVIS_TOKEN
+      plaintextValue: ${cf-linter-travis-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-migrations.repoId}
+  gh-org-secret-cf-webservices-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_WEBSERVICES_TOKEN
+      plaintextValue: ${cf-webservices-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-migrations.repoId}
+        - ${repo-conda-forge-webservices.repoId}
   gh-org-secret-cirun-api-key:
     type: github:ActionsOrganizationSecret
     options:
@@ -35,4 +282,65 @@ resources:
       visibility: selected
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
+  gh-org-secret-heroku-api-key:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: HEROKU_API_KEY
+      plaintextValue: ${heroku-api-key.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-requests.repoId}
+        - ${repo-core-notes.repoId}
+  gh-org-secret-heroku-only-staging-binstar-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: HEROKU_ONLY_STAGING_BINSTAR_TOKEN
+      plaintextValue: ${heroku-only-staging-binstar-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+  gh-org-secret-orgwide-travis-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ORGWIDE_TRAVIS_TOKEN
+      plaintextValue: ${orgwide-travis-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-admin-migrations.repoId}
+        - ${repo-admin-requests.repoId}
+  gh-org-secret-prod-binstar-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: PROD_BINSTAR_TOKEN
+      plaintextValue: ${prod-binstar-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+        - ${repo-admin-requests.repoId}
+  gh-org-secret-staging-binstar-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: STAGING_BINSTAR_TOKEN
+      plaintextValue: ${staging-binstar-token.credential}
+      visibility: all
 outputs: {}
