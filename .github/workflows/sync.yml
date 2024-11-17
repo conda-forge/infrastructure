@@ -1,0 +1,39 @@
+name: Sync
+
+on:
+  # NOTE: github.event is push payload:
+  # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#push
+  push:
+    branches: [main]
+    paths:
+      - sync_config.yml
+      - .github/workflows/sync.yml  # trigger sync if workflow is modified
+
+  # NOTE: github.event is workflow_dispatch payload:
+  # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
+  workflow_dispatch:
+
+jobs:
+  sync:
+    if: '!github.event.repository.fork'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b  # v4.1.4
+      - name: Generate token
+        id: generate_token
+        uses: actions/create-github-app-token@7bfa3a4717ef143a604ee0a99d859b8886a96d00  # v1.9.3
+        with:
+          app-id: ${{ secrets.CF_CURATOR_APP_ID }}
+          private-key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: BetaHuhn/repo-file-sync-action@3023dac7ce66c18b119e2012348437eadeaea116  # v1.21.0
+        with:
+          GH_INSTALLATION_TOKEN: ${{ steps.generate_token.outputs.token }}
+          # Reenable after testing
+          # PR_LABELS: |
+          #   automerge
+          #   sync
+          CONFIG_PATH: sync_config.yml
+          COMMIT_EACH_FILE: false
+          GIT_USERNAME: conda-forge-bot
+          GIT_EMAIL: conda-forge-bot@users.noreply.github.com

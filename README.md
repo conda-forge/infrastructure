@@ -1,6 +1,6 @@
 # conda-forge infrastructure
 
-This repository holds common configurations and settings forkey pieces of the
+This repository holds common configurations and settings for key pieces of the
 conda-forge infrastructure.
 
 > [!NOTE]

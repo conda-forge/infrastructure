@@ -1,0 +1,35 @@
+# This configuration file is used by the sync.yml workflow in this repository.
+# Check BetaHuhn/repo-file-sync-action for more details.
+group:
+  # Dependabot
+  - repos: |
+      conda-forge/cf-autotick-bot-test-package-feedstock
+    # conda-forge/admin-migrations
+    # conda-forge/admin-requests
+    # conda-forge/artifact-validation
+    # conda-forge/automerge-action
+    # conda-forge/by-the-numbers
+    # conda-forge/conda-forge-lockfiles
+    # conda-forge/conda-forge-webservices
+    # conda-forge/conda-forge.github.io
+    # conda-forge/core-notes
+    # conda-forge/docker-images
+    # conda-forge/feedstock-outputs
+    # conda-forge/miniforge
+    # conda-forge/miniforge-images
+    # conda-forge/setup-miniforge
+    # conda-forge/staged-recipes
+    # conda-forge/webservices-dispatch-action
+    files:
+      - source: .github/dependabot.yml
+        dest: .github/dependabot.yml
+
+  # Keep Alive workflow
+  - repos: |
+      conda-forge/cf-autotick-bot-test-package-feedstock
+    # conda-forge/automerge-action
+    # conda-forge/docker-images
+    # conda-forge/webservices-dispatch-action
+    files:
+      - source: worfklows/keep-alive.yml
+        dest: .github/workflows/keep-alive.yml
