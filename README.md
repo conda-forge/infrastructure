@@ -33,3 +33,8 @@ $ pulumi up
 Try it out by:
 * create and push a branch names with following the pattern "push-secrets-*"
 * observe the run in github action that populates secrets
+
+
+### Sponsored by Pulumi
+
+<img src="https://www.pulumi.com/images/pricing/team-oss.svg" width=400 />
