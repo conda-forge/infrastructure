@@ -1,0 +1,75 @@
+name: sync-secrets-heroku
+description: sync secrets from 1Password to Heroku
+runtime: yaml
+config:
+  'pulumi:tags': {value: {'pulumi:template': yaml}}
+  github:owner:
+        value: conda-forge
+variables:
+  autotick-bot-gh-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: autotick-bot-gh-token 
+        vault: pulumi
+  cf-admin-github-token: # GH_TOKEN
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-admin-github-token
+        vault: pulumi
+  cf-webservices-feedstock-private-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-webservices-feedstock-private-key
+        vault: pulumi
+  cf-webservices-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-webservices-token
+        vault: pulumi
+  cf-webservices-private-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-webservices-private-key
+        vault: pulumi
+  heroku-only-staging-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: heroku-only-staging-binstar-token
+        vault: pulumi
+  prod-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: prod-binstar-token
+        vault: pulumi
+
+  heroku-app:
+    fn::invoke:
+      function: heroku:app/getApp:getApp
+      arguments:
+        name: conda-forge
+resources:
+  onepassword-provider:
+    type: pulumi:providers:onepassword
+    options:
+      version: 1.1.4
+      pluginDownloadURL: github://api.github.com/1Password/
+  heroku-app-config:
+    type: heroku:app:ConfigAssociation
+    properties:
+        appId: ${heroku-app.id}
+        sensitiveVars:
+            AUTOTICK_BOT_GH_TOKEN: ${autotick-bot-gh-token.credential}
+            CF_WEBSERVICES_FEEDSTOCK_PRIVATE_KEY: ${cf-webservices-feedstock-private-key.credential}
+            CF_WEBSERVICES_PRIVATE_KEY: ${cf-webservices-private-key.credential}
+            CF_WEBSERVICES_TOKEN: ${cf-webservices-token.credential}
+            GH_TOKEN: ${cf-admin-github-token.credential}
+            PROD_BINSTAR_TOKEN: ${prod-binstar-token.credential}
+            STAGING_BINSTAR_TOKEN: ${heroku-only-staging-binstar-token.credential}
+outputs: {}

@@ -8,7 +8,7 @@ conda-forge infrastructure.
 
 ## Sync-secrets
 
-The `sync-secrets` pulumi project syncs secrets from the conda-forge 1password vault to relevant services (eg. to GitHub).
+The `sync-secrets` pulumi project syncs secrets from the conda-forge 1password vault to Github
 
 ### Running locally
 
@@ -34,6 +34,25 @@ Try it out by:
 * create and push a branch names with following the pattern "push-secrets-*"
 * observe the run in github action that populates secrets
 
+## Sync-secrets-heroku
+
+The `sync-secrets-heroku` pulumi project syncs secrets from the conda-forge 1password vault to relevant services (eg. to GitHub).
+
+### Running locally
+
+* Install the 1password cli
+* Export environment variables:
+  * `HEROKU_API_KEY` (api token for heroku)
+  * `OP_SERVICE_ACCOUNT_TOKEN` (token for 1password service account)
+*  Setup pulumi (only needs to be run once)
+```
+$ pulumi install
+$ pulumi plugin install resource onepassword --server github://api.github.com/1Password/pulumi-onepassword
+```
+* Apply changes
+```
+$ pulumi up
+```
 
 ### Sponsored by Pulumi
 
