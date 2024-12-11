@@ -31,12 +31,12 @@ $ pulumi up
 [`.github/workflows/push-1password-secrets-to-gha`](https://github.com/conda-forge/infrastructure/blob/main/.github/workflows/push-1password-secrets-to-gha.yaml)
 
 Try it out by:
-* create and push a branch names with following the pattern "push-secrets-*"
+* create and push a branch names with following the pattern "push-secrets-*" OR [manually run the workflow](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow)
 * observe the run in github action that populates secrets
 
 ## Sync-secrets-heroku
 
-The `sync-secrets-heroku` pulumi project syncs secrets from the conda-forge 1password vault to relevant services (eg. to GitHub).
+The `sync-secrets-heroku` pulumi project syncs secrets from the conda-forge 1password vault to Heroku
 
 ### Running locally
 
@@ -53,6 +53,14 @@ $ pulumi plugin install resource onepassword --server github://api.github.com/1P
 ```
 $ pulumi up
 ```
+
+### Try it out with GHA
+
+[`.github/workflows/push-1password-secrets-to-gha`](https://github.com/conda-forge/infrastructure/blob/main/.github/workflows/push-1password-secrets-to-gha.yaml)
+
+Try it out by:
+* create and push a branch names with following the pattern "push-secrets-*" OR [manually run the workflow](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow)
+* observe the run in github action that populates secrets
 
 ### Sponsored by Pulumi
 
