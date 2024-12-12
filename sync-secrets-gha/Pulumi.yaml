@@ -1,4 +1,4 @@
-name: sync-secrets
+name: sync-secrets-gha
 description: sync secrets from 1Password to GH
 runtime: yaml
 config:

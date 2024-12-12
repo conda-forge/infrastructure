@@ -6,9 +6,9 @@ conda-forge infrastructure.
 > [!NOTE]
 > This is not a forum for end-user questions
 
-## Sync-secrets
+## Sync-secrets-gha
 
-The `sync-secrets` pulumi project syncs secrets from the conda-forge 1password vault to Github
+The `sync-secrets-gha` pulumi project syncs secrets from the conda-forge 1password vault to Github
 
 ### Running locally
 
