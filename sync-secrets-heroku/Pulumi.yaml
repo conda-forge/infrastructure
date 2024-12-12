@@ -3,9 +3,10 @@ description: sync secrets from 1Password to Heroku
 runtime: yaml
 config:
   'pulumi:tags': {value: {'pulumi:template': yaml}}
-  github:owner:
+  'github:owner':
         value: conda-forge
 variables:
+  # get 1password secrets
   autotick-bot-gh-token:
     fn::invoke:
       function: onepassword:getItem
@@ -48,7 +49,7 @@ variables:
       arguments:
         title: prod-binstar-token
         vault: pulumi
-
+  # get target heroku app
   heroku-app:
     fn::invoke:
       function: heroku:app/getApp:getApp

@@ -6,6 +6,7 @@ config:
   github:owner:
         value: conda-forge
 variables:
+  # get 1password secrets
   azure-token:
     fn::invoke:
       function: onepassword:getItem
@@ -96,7 +97,7 @@ variables:
       arguments:
         title: staging-binstar-token
         vault: pulumi
-
+  # get GH repos
   repo-admin-migrations:
     fn::invoke:
       function: github:getRepository
