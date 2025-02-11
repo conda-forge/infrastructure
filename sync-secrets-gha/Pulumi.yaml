@@ -91,6 +91,12 @@ variables:
       arguments:
         title: prod-binstar-token
         vault: pulumi
+  pulumi-1password-service-account:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: pulumi-1password-service-account
+        vault: pulumi
   staging-binstar-token:
     fn::invoke:
       function: onepassword:getItem
@@ -133,6 +139,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/conda-forge-webservices
+  repo-infrastructure:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/infrastructure
   repo-webservices-dispatch-action:
     fn::invoke:
       function: github:getRepository
@@ -308,6 +319,18 @@ resources:
       visibility: selected
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
+  gh-org-secret-op-service-account-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: OP_SERVICE_ACCOUNT_TOKEN
+      plaintextValue: ${pulumi-1password-service-account.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-infrastructure.repoId}
   gh-org-secret-orgwide-travis-token:
     type: github:ActionsOrganizationSecret
     options:
