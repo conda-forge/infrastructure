@@ -59,8 +59,9 @@ $ pulumi up
 
 [`.github/workflows/push-1password-secrets-to-gha`](https://github.com/conda-forge/infrastructure/blob/main/.github/workflows/push-1password-secrets-to-gha.yaml)
 
+
 Try it out by:
-* create and push a branch names with following the pattern "push-secrets-*" OR [manually run the workflow](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow)
+* create and push a branch name following the pattern "gha-push-secrets-*" OR [manually run](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow) the [1Password-to-GHA workflow](https://github.com/conda-forge/infrastructure/actions/workflows/push-1password-secrets-to-gha.yaml)
 * observe the run in github action that populates secrets
 
 ## Sync-secrets-heroku
