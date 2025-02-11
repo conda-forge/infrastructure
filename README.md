@@ -32,7 +32,7 @@ $ pulumi up
 [`.github/workflows/push-1password-secrets-to-azure`](https://github.com/conda-forge/infrastructure/blob/main/.github/workflows/push-1password-secrets-to-azure.yaml)
 
 Try it out by:
-* create and push a branch names with following the pattern "push-secrets-*" OR [manually run the workflow](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow)
+* create and push a branch name following the pattern "azure-push-secrets-*" OR [manually run](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow) the [1Password-to-Azure workflow](https://github.com/conda-forge/infrastructure/actions/workflows/push-1password-secrets-to-azure.yaml)
 * observe the run in github action that populates secrets
 
 ## Sync-secrets-gha
@@ -88,7 +88,7 @@ $ pulumi up
 [`.github/workflows/push-1password-secrets-to-heroku`](https://github.com/conda-forge/infrastructure/blob/main/.github/workflows/push-1password-secrets-to-heroku.yaml)
 
 Try it out by:
-* create and push a branch names with following the pattern "push-secrets-*" OR [manually run the workflow](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow)
+* create and push a branch named with the pattern "heroku-push-secrets-*" OR [manually run](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow) the [1Password-to-Heroku workflow](https://github.com/conda-forge/infrastructure/actions/workflows/push-1password-secrets-to-heroku.yaml)
 * observe the run in github action that populates secrets
 
 ### Sponsored by Pulumi
