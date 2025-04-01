@@ -7,12 +7,6 @@ config:
         value: conda-forge
 variables:
   # get 1password secrets
-  prod-binstar-token:
-    fn::invoke:
-      function: onepassword:getItem
-      arguments:
-        title: prod-binstar-token
-        vault: pulumi
   staging-binstar-token:
     fn::invoke:
       function: onepassword:getItem
@@ -42,7 +36,7 @@ resources:
       allowAccess: true
       variables:
         - name: BINSTAR_TOKEN
-          secretValue: ${prod-binstar-token.credential}
+          secretValue: ${staging-binstar-token.credential}
           isSecret: true
         - name: STAGING_BINSTAR_TOKEN
           secretValue: ${staging-binstar-token.credential}
