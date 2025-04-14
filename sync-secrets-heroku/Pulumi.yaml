@@ -11,7 +11,7 @@ variables:
     fn::invoke:
       function: onepassword:getItem
       arguments:
-        title: autotick-bot-gh-token 
+        title: autotick-bot-gh-token
         vault: pulumi
   cf-admin-github-token: # GH_TOKEN
     fn::invoke:
@@ -43,6 +43,12 @@ variables:
       arguments:
         title: heroku-only-staging-binstar-token
         vault: pulumi
+  post-staging-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: post-staging-binstar-token
+        vault: pulumi
   prod-binstar-token:
     fn::invoke:
       function: onepassword:getItem
@@ -73,4 +79,5 @@ resources:
             GH_TOKEN: ${cf-admin-github-token.credential}
             PROD_BINSTAR_TOKEN: ${prod-binstar-token.credential}
             STAGING_BINSTAR_TOKEN: ${heroku-only-staging-binstar-token.credential}
+            POST_STAGING_BINSTAR_TOKEN: ${post-staging-binstar-token.credential}
 outputs: {}

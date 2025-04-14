@@ -91,6 +91,12 @@ variables:
       arguments:
         title: prod-binstar-token
         vault: pulumi
+  post-staging-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: post-staging-binstar-token
+        vault: pulumi
   pulumi-1password-service-account:
     fn::invoke:
       function: onepassword:getItem
@@ -316,6 +322,18 @@ resources:
     properties:
       secretName: HEROKU_ONLY_STAGING_BINSTAR_TOKEN
       plaintextValue: ${heroku-only-staging-binstar-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+  gh-org-secret-post-staging-binstar-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: POST_STAGING_BINSTAR_TOKEN
+      plaintextValue: ${post-staging-binstar-token.credential}
       visibility: selected
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
