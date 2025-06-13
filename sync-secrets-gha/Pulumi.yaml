@@ -109,6 +109,12 @@ variables:
       arguments:
         title: staging-binstar-token
         vault: pulumi
+  read-conda-forge-gh-org-as-admin-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: read-conda-forge-gh-org-as-admin-token
+        vault: pulumi
   # get GH repos
   repo-admin-migrations:
     fn::invoke:
@@ -155,6 +161,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/webservices-dispatch-action
+  repo-governance:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/governance
 resources:
   onepassword-provider:
     type: pulumi:providers:onepassword
@@ -349,6 +360,18 @@ resources:
       visibility: selected
       selectedRepositoryIds:
         - ${repo-infrastructure.repoId}
+  gh-org-secret-governance-team-checks-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: READ_ORG_ADMIN_TOKEN
+      plaintextValue: ${read-conda-forge-gh-org-as-admin-token.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-governance.repoId}
   gh-org-secret-orgwide-travis-token:
     type: github:ActionsOrganizationSecret
     options:
