@@ -58,7 +58,7 @@ resources:
           isSecret: true
   anacondaOrgVariableGroupCdtBuilds:
     type: azuredevops:VariableGroup
-    name: anaconda-org
+    name: anaconda-org-cdt-builds
     properties:
       projectId: ${azure-cdt-builds-project-id.credential}
       name: anaconda-org
