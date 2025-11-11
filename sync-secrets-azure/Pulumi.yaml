@@ -13,6 +13,12 @@ variables:
       arguments:
         title: staging-binstar-token
         vault: pulumi
+  prod-binstar-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: prod-binstar-token
+        vault: pulumi
   # get feedstock-builds project id
   azure-feedstock-project-id:
     fn::invoke:
@@ -43,6 +49,8 @@ resources:
       allowAccess: true
       variables:
         - name: BINSTAR_TOKEN
+          # DO _NOT_ SET TO PROD-BINSTAR!!!
+          # Using staging here too is intentional, NOT a mistake.
           secretValue: ${staging-binstar-token.credential}
           isSecret: true
         - name: STAGING_BINSTAR_TOKEN
@@ -58,9 +66,6 @@ resources:
       allowAccess: true
       variables:
         - name: BINSTAR_TOKEN
-          secretValue: ${staging-binstar-token.credential}
-          isSecret: true
-        - name: STAGING_BINSTAR_TOKEN
-          secretValue: ${staging-binstar-token.credential}
+          secretValue: ${prod-binstar-token.credential}
           isSecret: true
 outputs: {}
