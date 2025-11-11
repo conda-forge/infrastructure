@@ -13,12 +13,19 @@ variables:
       arguments:
         title: staging-binstar-token
         vault: pulumi
-  # get project id
+  # get feedstock-builds project id
   azure-feedstock-project-id:
     fn::invoke:
       function: onepassword:getItem
       arguments:
         title: azure-feedstock-project-id
+        vault: pulumi
+  # get cdt-builds project id
+  azure-cdt-builds-project-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: azure-cdt-builds-project-id
         vault: pulumi
 resources:
   onepassword-provider:
@@ -31,6 +38,21 @@ resources:
     name: anaconda-org
     properties:
       projectId: ${azure-feedstock-project-id.credential}
+      name: anaconda-org
+      description: anaconda-org secrets (provisioned from https://github.com/conda-forge/infrastructure)
+      allowAccess: true
+      variables:
+        - name: BINSTAR_TOKEN
+          secretValue: ${staging-binstar-token.credential}
+          isSecret: true
+        - name: STAGING_BINSTAR_TOKEN
+          secretValue: ${staging-binstar-token.credential}
+          isSecret: true
+  anacondaOrgVariableGroupCdtBuilds:
+    type: azuredevops:VariableGroup
+    name: anaconda-org
+    properties:
+      projectId: ${azure-cdt-builds-project-id.credential}
       name: anaconda-org
       description: anaconda-org secrets (provisioned from https://github.com/conda-forge/infrastructure)
       allowAccess: true
