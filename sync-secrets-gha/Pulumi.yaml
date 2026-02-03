@@ -115,6 +115,24 @@ variables:
       arguments:
         title: read-conda-forge-gh-org-as-admin-token
         vault: pulumi
+  certificate-macos-application:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: certificate-macos-application
+        vault: pulumi
+  certificate-macos-installer:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: certificate-macos-installer
+        vault: pulumi
+  apple-notarization-triplet:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: apple-notarization-triplet
+        vault: pulumi
   # get GH repos
   repo-admin-migrations:
     fn::invoke:
@@ -166,6 +184,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/governance
+  repo-miniforge:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/miniforge
 resources:
   onepassword-provider:
     type: pulumi:providers:onepassword
@@ -372,6 +395,90 @@ resources:
       visibility: selected
       selectedRepositoryIds:
         - ${repo-governance.repoId}
+  gh-org-secret-apple-notarization-authkey-base64:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: MACOS_NOTARIZATION_AUTHKEY_BASE64
+      plaintextValue: ${apple-notarization-triplet.authkey-base64}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+  gh-org-secret-apple-notarization-issuer-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: MACOS_NOTARIZATION_ISSUER_ID
+      plaintextValue: ${apple-notarization-triplet.issuer-id}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+  gh-org-secret-apple-notarization-key-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: MACOS_NOTARIZATION_KEY_ID
+      plaintextValue: ${apple-notarization-triplet.key-id}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+  gh-org-secret-certificate-macos-installer-base64:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: MACOS_CERTIFICATE_INSTALLER_BASE64
+      plaintextValue: ${certificate-macos-installer.certificate-base64}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+  gh-org-secret-certificate-macos-installer-password:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: MACOS_CERTIFICATE_INSTALLER_PASSWORD
+      plaintextValue: ${certificate-macos-installer.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+  gh-org-secret-certificate-macos-application-base64:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: MACOS_CERTIFICATE_APPLICATION_BASE64
+      plaintextValue: ${certificate-macos-application.certificate-base64}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+  gh-org-secret-certificate-macos-application-password:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: MACOS_CERTIFICATE_APPLICATION_PASSWORD
+      plaintextValue: ${certificate-macos-application.credential}
+      visibility: selected
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
   gh-org-secret-orgwide-travis-token:
     type: github:ActionsOrganizationSecret
     options:
