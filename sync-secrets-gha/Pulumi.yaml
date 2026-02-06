@@ -207,6 +207,8 @@ resources:
     options:
       version: 1.1.4
       pluginDownloadURL: github://api.github.com/1Password/
+
+  # Secret: AZURE_TOKEN
   gh-org-secret-azure-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -217,9 +219,15 @@ resources:
       secretName: AZURE_TOKEN
       plaintextValue: ${azure-token.credential}
       visibility: selected
+  gh-org-secret-azure-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-azure-token.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
+
+  # Secret: CF_ADMIN_GITHUB_TOKEN
   gh-org-secret-cf-admin-github-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -230,10 +238,16 @@ resources:
       secretName: CF_ADMIN_GITHUB_TOKEN
       plaintextValue: ${cf-admin-github-token.credential}
       visibility: selected
+  gh-org-secret-cf-admin-github-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cf-admin-github-token.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
+
+  # Secret: CF_ADMIN_TRAVIS_TOKEN
   gh-org-secret-cf-admin-travis-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -244,8 +258,14 @@ resources:
       secretName: CF_ADMIN_TRAVIS_TOKEN
       plaintextValue: ${cf-admin-travis-token.credential}
       visibility: selected
+  gh-org-secret-cf-admin-travis-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cf-admin-travis-token.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
+
+  # Secret: CF_BOT_DH_PASSWORD
   gh-org-cf-bot-dh-password:
     type: github:ActionsOrganizationSecret
     options:
@@ -256,11 +276,17 @@ resources:
       secretName: CF_BOT_DH_PASSWORD
       plaintextValue: ${cf-bot-dh-password.password}
       visibility: selected
+  gh-org-cf-bot-dh-password-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-cf-bot-dh-password.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-webservices-dispatch-action.repoId}
         - ${repo-automerge-action.repoId}
         - ${repo-conda-forge-feedstock-ops.repoId}
+
+  # Secret: CF_CURATOR_APP_ID
   gh-org-secret-cf-curator-app-id:
     type: github:ActionsOrganizationSecret
     options:
@@ -271,6 +297,10 @@ resources:
       secretName: CF_CURATOR_APP_ID
       plaintextValue: ${cf-curator-app-id.credential}
       visibility: selected
+  gh-org-secret-cf-curator-app-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cf-curator-app-id.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
@@ -279,6 +309,8 @@ resources:
         - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-webservices-dispatch-action.repoId}
+
+  # Secret: CF_CURATOR_PRIVATE_KEY
   gh-org-secret-cf-curator-private-key:
     type: github:ActionsOrganizationSecret
     options:
@@ -289,6 +321,10 @@ resources:
       secretName: CF_CURATOR_PRIVATE_KEY
       plaintextValue: ${cf-curator-private-key.privateKey}
       visibility: selected
+  gh-org-secret-cf-curator-private-key-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cf-curator-private-key.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
@@ -297,6 +333,8 @@ resources:
         - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-webservices-dispatch-action.repoId}
+
+  # Secret: CF_DAEMON_TRAVIS_TOKEN
   gh-org-secret-cf-daemon-travis-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -307,8 +345,14 @@ resources:
       secretName: CF_DAEMON_TRAVIS_TOKEN
       plaintextValue: ${cf-daemon-travis-token.credential}
       visibility: selected
+  gh-org-secret-cf-daemon-travis-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cf-daemon-travis-token.secretName}
       selectedRepositoryIds:
         - ${repo-admin-migrations.repoId}
+
+  # Secret: CF_LINTER_TRAVIS_TOKEN
   gh-org-secret-cf-linter-travis-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -319,8 +363,14 @@ resources:
       secretName: CF_LINTER_TRAVIS_TOKEN
       plaintextValue: ${cf-linter-travis-token.credential}
       visibility: selected
+  gh-org-secret-cf-linter-travis-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cf-linter-travis-token.secretName}
       selectedRepositoryIds:
         - ${repo-admin-migrations.repoId}
+
+  # Secret: CF_WEBSERVICES_TOKEN
   gh-org-secret-cf-webservices-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -331,9 +381,15 @@ resources:
       secretName: CF_WEBSERVICES_TOKEN
       plaintextValue: ${cf-webservices-token.credential}
       visibility: selected
+  gh-org-secret-cf-webservices-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cf-webservices-token.secretName}
       selectedRepositoryIds:
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
+
+  # Secret: CIRUN_API_KEY
   gh-org-secret-cirun-api-key:
     type: github:ActionsOrganizationSecret
     options:
@@ -344,8 +400,14 @@ resources:
       secretName: CIRUN_API_KEY
       plaintextValue: ${cirun-api-key.credential}
       visibility: selected
+  gh-org-secret-cirun-api-key-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-cirun-api-key.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
+
+  # Secret: HEROKU_API_KEY
   gh-org-secret-heroku-api-key:
     type: github:ActionsOrganizationSecret
     options:
@@ -356,9 +418,15 @@ resources:
       secretName: HEROKU_API_KEY
       plaintextValue: ${heroku-api-key.credential}
       visibility: selected
+  gh-org-secret-heroku-api-key-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-heroku-api-key.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
         - ${repo-core-notes.repoId}
+
+  # Secret: HEROKU_ONLY_STAGING_BINSTAR_TOKEN
   gh-org-secret-heroku-only-staging-binstar-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -369,8 +437,14 @@ resources:
       secretName: HEROKU_ONLY_STAGING_BINSTAR_TOKEN
       plaintextValue: ${heroku-only-staging-binstar-token.credential}
       visibility: selected
+  gh-org-secret-heroku-only-staging-binstar-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-heroku-only-staging-binstar-token.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
+
+  # Secret: POST_STAGING_BINSTAR_TOKEN
   gh-org-secret-post-staging-binstar-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -381,8 +455,14 @@ resources:
       secretName: POST_STAGING_BINSTAR_TOKEN
       plaintextValue: ${post-staging-binstar-token.credential}
       visibility: selected
+  gh-org-secret-post-staging-binstar-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-post-staging-binstar-token.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
+
+  # Secret: OP_SERVICE_ACCOUNT_TOKEN
   gh-org-secret-op-service-account-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -393,8 +473,14 @@ resources:
       secretName: OP_SERVICE_ACCOUNT_TOKEN
       plaintextValue: ${pulumi-1password-service-account.credential}
       visibility: selected
+  gh-org-secret-op-service-account-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-op-service-account-token.secretName}
       selectedRepositoryIds:
         - ${repo-infrastructure.repoId}
+
+  # Secret: READ_ORG_ADMIN_TOKEN
   gh-org-secret-governance-team-checks-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -405,8 +491,14 @@ resources:
       secretName: READ_ORG_ADMIN_TOKEN
       plaintextValue: ${read-conda-forge-gh-org-as-admin-token.credential}
       visibility: selected
+  gh-org-secret-governance-team-checks-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-governance-team-checks-token.secretName}
       selectedRepositoryIds:
         - ${repo-governance.repoId}
+
+  # Secret: MACOS_NOTARIZATION_AUTHKEY_BASE64
   gh-org-secret-apple-notarization-authkey-base64:
     type: github:ActionsOrganizationSecret
     options:
@@ -417,8 +509,14 @@ resources:
       secretName: MACOS_NOTARIZATION_AUTHKEY_BASE64
       plaintextValue: ${apple-notarization-authkey-base64.credential}
       visibility: selected
+  gh-org-secret-apple-notarization-authkey-base64-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-apple-notarization-authkey-base64.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: MACOS_NOTARIZATION_ISSUER_ID
   gh-org-secret-apple-notarization-issuer-id:
     type: github:ActionsOrganizationSecret
     options:
@@ -429,8 +527,14 @@ resources:
       secretName: MACOS_NOTARIZATION_ISSUER_ID
       plaintextValue: ${apple-notarization-issuer-id.credential}
       visibility: selected
+  gh-org-secret-apple-notarization-issuer-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-apple-notarization-issuer-id.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: MACOS_NOTARIZATION_KEY_ID
   gh-org-secret-apple-notarization-key-id:
     type: github:ActionsOrganizationSecret
     options:
@@ -441,8 +545,14 @@ resources:
       secretName: MACOS_NOTARIZATION_KEY_ID
       plaintextValue: ${apple-notarization-key-id.credential}
       visibility: selected
+  gh-org-secret-apple-notarization-key-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-apple-notarization-key-id.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: MACOS_CERTIFICATE_INSTALLER_BASE64
   gh-org-secret-certificate-macos-installer-base64:
     type: github:ActionsOrganizationSecret
     options:
@@ -453,8 +563,14 @@ resources:
       secretName: MACOS_CERTIFICATE_INSTALLER_BASE64
       plaintextValue: ${certificate-macos-installer.username}
       visibility: selected
+  gh-org-secret-certificate-macos-installer-base64-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-certificate-macos-installer-base64.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: MACOS_CERTIFICATE_INSTALLER_PASSWORD
   gh-org-secret-certificate-macos-installer-password:
     type: github:ActionsOrganizationSecret
     options:
@@ -465,8 +581,14 @@ resources:
       secretName: MACOS_CERTIFICATE_INSTALLER_PASSWORD
       plaintextValue: ${certificate-macos-installer.credential}
       visibility: selected
+  gh-org-secret-certificate-macos-installer-password-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-certificate-macos-installer-password.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: MACOS_CERTIFICATE_APPLICATION_BASE64
   gh-org-secret-certificate-macos-application-base64:
     type: github:ActionsOrganizationSecret
     options:
@@ -477,8 +599,14 @@ resources:
       secretName: MACOS_CERTIFICATE_APPLICATION_BASE64
       plaintextValue: ${certificate-macos-application.username}
       visibility: selected
+  gh-org-secret-certificate-macos-application-base64-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-certificate-macos-application-base64.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: MACOS_CERTIFICATE_APPLICATION_PASSWORD
   gh-org-secret-certificate-macos-application-password:
     type: github:ActionsOrganizationSecret
     options:
@@ -489,8 +617,14 @@ resources:
       secretName: MACOS_CERTIFICATE_APPLICATION_PASSWORD
       plaintextValue: ${certificate-macos-application.credential}
       visibility: selected
+  gh-org-secret-certificate-macos-application-password-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-certificate-macos-application-password.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: ORGWIDE_TRAVIS_TOKEN
   gh-org-secret-orgwide-travis-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -501,9 +635,15 @@ resources:
       secretName: ORGWIDE_TRAVIS_TOKEN
       plaintextValue: ${orgwide-travis-token.credential}
       visibility: selected
+  gh-org-secret-orgwide-travis-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-orgwide-travis-token.secretName}
       selectedRepositoryIds:
         - ${repo-admin-migrations.repoId}
         - ${repo-admin-requests.repoId}
+
+  # Secret: PROD_BINSTAR_TOKEN
   gh-org-secret-prod-binstar-token:
     type: github:ActionsOrganizationSecret
     options:
@@ -514,9 +654,15 @@ resources:
       secretName: PROD_BINSTAR_TOKEN
       plaintextValue: ${prod-binstar-token.credential}
       visibility: selected
+  gh-org-secret-prod-binstar-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-prod-binstar-token.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-admin-requests.repoId}
+
+  # Secret: STAGING_BINSTAR_TOKEN (visibility: all, no repos needed)
   gh-org-secret-staging-binstar-token:
     type: github:ActionsOrganizationSecret
     options:
