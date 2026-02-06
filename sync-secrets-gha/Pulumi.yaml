@@ -127,11 +127,23 @@ variables:
       arguments:
         title: certificate-macos-installer
         vault: pulumi
-  apple-notarization-triplet:
+  apple-notarization-issuer-id:
     fn::invoke:
       function: onepassword:getItem
       arguments:
-        title: apple-notarization-triplet
+        title: apple-notarization-issuer-id
+        vault: pulumi
+  apple-notarization-key-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: apple-notarization-key-id
+        vault: pulumi
+  apple-notarization-authkey-base64:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: apple-notarization-authkey-base64
         vault: pulumi
   # get GH repos
   repo-admin-migrations:
@@ -403,7 +415,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_NOTARIZATION_AUTHKEY_BASE64
-      plaintextValue: ${apple-notarization-triplet.authkey-base64}
+      plaintextValue: ${apple-notarization-authkey-base64.credential}
       visibility: selected
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
@@ -415,7 +427,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_NOTARIZATION_ISSUER_ID
-      plaintextValue: ${apple-notarization-triplet.issuer-id}
+      plaintextValue: ${apple-notarization-issuer-id.credential}
       visibility: selected
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
@@ -427,7 +439,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_NOTARIZATION_KEY_ID
-      plaintextValue: ${apple-notarization-triplet.key-id}
+      plaintextValue: ${apple-notarization-key-id.credential}
       visibility: selected
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
@@ -439,7 +451,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_CERTIFICATE_INSTALLER_BASE64
-      plaintextValue: ${certificate-macos-installer.certificate-base64}
+      plaintextValue: ${certificate-macos-installer.username}
       visibility: selected
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
@@ -463,7 +475,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_CERTIFICATE_APPLICATION_BASE64
-      plaintextValue: ${certificate-macos-application.certificate-base64}
+      plaintextValue: ${certificate-macos-application.username}
       visibility: selected
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
