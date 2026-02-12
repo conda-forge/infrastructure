@@ -145,6 +145,24 @@ variables:
       arguments:
         title: apple-notarization-authkey-base64
         vault: pulumi
+  windows-ci-azure-client-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-ci-azure-client-id
+        vault: pulumi
+  windows-ci-azure-tenant-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-ci-azure-tenant-id
+        vault: pulumi
+  windows-ci-azure-subscription-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-ci-azure-subscription-id
+        vault: pulumi
   # get GH repos
   repo-admin-migrations:
     fn::invoke:
@@ -201,6 +219,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/miniforge
+  repo-cirun:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/.cirun
 resources:
   onepassword-provider:
     type: pulumi:providers:onepassword
@@ -623,6 +646,60 @@ resources:
       secretName: ${gh-org-secret-certificate-macos-application-password.secretName}
       selectedRepositoryIds:
         - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_CI_AZURE_CLIENT_ID
+  gh-org-secret-windows-ci-azure-client-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_CI_AZURE_CLIENT_ID
+      plaintextValue: ${windows-ci-azure-client-id.credential}
+      visibility: selected
+  gh-org-secret-windows-ci-azure-client-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-windows-ci-azure-client-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-cirun.repoId}
+
+  # Secret: WINDOWS_CI_AZURE_TENANT_ID
+  gh-org-secret-windows-ci-azure-tenant-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_CI_AZURE_TENANT_ID
+      plaintextValue: ${windows-ci-azure-tenant-id.credential}
+      visibility: selected
+  gh-org-secret-windows-ci-azure-tenant-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-windows-ci-azure-tenant-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-cirun.repoId}
+
+  # Secret: WINDOWS_CI_AZURE_SUBSCRIPTION_ID
+  gh-org-secret-windows-ci-azure-subscription-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_CI_AZURE_SUBSCRIPTION_ID
+      plaintextValue: ${windows-ci-azure-subscription-id.credential}
+      visibility: selected
+  gh-org-secret-windows-ci-azure-subscription-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    properties:
+      secretName: ${gh-org-secret-windows-ci-azure-subscription-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-cirun.repoId}
 
   # Secret: ORGWIDE_TRAVIS_TOKEN
   gh-org-secret-orgwide-travis-token:
