@@ -244,6 +244,10 @@ resources:
       visibility: selected
   gh-org-secret-azure-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-azure-token.secretName}
       selectedRepositoryIds:
@@ -263,6 +267,10 @@ resources:
       visibility: selected
   gh-org-secret-cf-admin-github-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cf-admin-github-token.secretName}
       selectedRepositoryIds:
@@ -283,6 +291,10 @@ resources:
       visibility: selected
   gh-org-secret-cf-admin-travis-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cf-admin-travis-token.secretName}
       selectedRepositoryIds:
@@ -301,6 +313,10 @@ resources:
       visibility: selected
   gh-org-cf-bot-dh-password-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-cf-bot-dh-password.secretName}
       selectedRepositoryIds:
@@ -322,6 +338,10 @@ resources:
       visibility: selected
   gh-org-secret-cf-curator-app-id-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cf-curator-app-id.secretName}
       selectedRepositoryIds:
@@ -346,6 +366,10 @@ resources:
       visibility: selected
   gh-org-secret-cf-curator-private-key-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cf-curator-private-key.secretName}
       selectedRepositoryIds:
@@ -370,6 +394,10 @@ resources:
       visibility: selected
   gh-org-secret-cf-daemon-travis-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cf-daemon-travis-token.secretName}
       selectedRepositoryIds:
@@ -388,6 +416,10 @@ resources:
       visibility: selected
   gh-org-secret-cf-linter-travis-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cf-linter-travis-token.secretName}
       selectedRepositoryIds:
@@ -406,6 +438,10 @@ resources:
       visibility: selected
   gh-org-secret-cf-webservices-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cf-webservices-token.secretName}
       selectedRepositoryIds:
@@ -425,6 +461,10 @@ resources:
       visibility: selected
   gh-org-secret-cirun-api-key-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-cirun-api-key.secretName}
       selectedRepositoryIds:
@@ -443,6 +483,10 @@ resources:
       visibility: selected
   gh-org-secret-heroku-api-key-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-heroku-api-key.secretName}
       selectedRepositoryIds:
@@ -462,6 +506,10 @@ resources:
       visibility: selected
   gh-org-secret-heroku-only-staging-binstar-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-heroku-only-staging-binstar-token.secretName}
       selectedRepositoryIds:
@@ -480,6 +528,10 @@ resources:
       visibility: selected
   gh-org-secret-post-staging-binstar-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-post-staging-binstar-token.secretName}
       selectedRepositoryIds:
@@ -498,6 +550,10 @@ resources:
       visibility: selected
   gh-org-secret-op-service-account-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-op-service-account-token.secretName}
       selectedRepositoryIds:
@@ -516,6 +572,10 @@ resources:
       visibility: selected
   gh-org-secret-governance-team-checks-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-governance-team-checks-token.secretName}
       selectedRepositoryIds:
@@ -534,6 +594,10 @@ resources:
       visibility: selected
   gh-org-secret-apple-notarization-authkey-base64-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-apple-notarization-authkey-base64.secretName}
       selectedRepositoryIds:
@@ -552,6 +616,10 @@ resources:
       visibility: selected
   gh-org-secret-apple-notarization-issuer-id-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-apple-notarization-issuer-id.secretName}
       selectedRepositoryIds:
@@ -570,6 +638,10 @@ resources:
       visibility: selected
   gh-org-secret-apple-notarization-key-id-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-apple-notarization-key-id.secretName}
       selectedRepositoryIds:
@@ -588,6 +660,10 @@ resources:
       visibility: selected
   gh-org-secret-certificate-macos-installer-base64-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-certificate-macos-installer-base64.secretName}
       selectedRepositoryIds:
@@ -606,6 +682,10 @@ resources:
       visibility: selected
   gh-org-secret-certificate-macos-installer-password-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-certificate-macos-installer-password.secretName}
       selectedRepositoryIds:
@@ -624,6 +704,10 @@ resources:
       visibility: selected
   gh-org-secret-certificate-macos-application-base64-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-certificate-macos-application-base64.secretName}
       selectedRepositoryIds:
@@ -642,6 +726,10 @@ resources:
       visibility: selected
   gh-org-secret-certificate-macos-application-password-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-certificate-macos-application-password.secretName}
       selectedRepositoryIds:
@@ -660,6 +748,10 @@ resources:
       visibility: selected
   gh-org-secret-windows-ci-azure-client-id-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-windows-ci-azure-client-id.secretName}
       selectedRepositoryIds:
@@ -678,6 +770,10 @@ resources:
       visibility: selected
   gh-org-secret-windows-ci-azure-tenant-id-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-windows-ci-azure-tenant-id.secretName}
       selectedRepositoryIds:
@@ -696,6 +792,10 @@ resources:
       visibility: selected
   gh-org-secret-windows-ci-azure-subscription-id-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-windows-ci-azure-subscription-id.secretName}
       selectedRepositoryIds:
@@ -714,6 +814,10 @@ resources:
       visibility: selected
   gh-org-secret-orgwide-travis-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-orgwide-travis-token.secretName}
       selectedRepositoryIds:
@@ -733,6 +837,10 @@ resources:
       visibility: selected
   gh-org-secret-prod-binstar-token-repos:
     type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
     properties:
       secretName: ${gh-org-secret-prod-binstar-token.secretName}
       selectedRepositoryIds:
