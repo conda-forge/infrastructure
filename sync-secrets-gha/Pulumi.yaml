@@ -79,12 +79,6 @@ variables:
       arguments:
         title: heroku-only-staging-binstar-token
         vault: pulumi
-  orgwide-travis-token:
-    fn::invoke:
-      function: onepassword:getItem
-      arguments:
-        title: orgwide-travis-token
-        vault: pulumi
   prod-binstar-token:
     fn::invoke:
       function: onepassword:getItem
@@ -800,29 +794,6 @@ resources:
       secretName: ${gh-org-secret-windows-ci-azure-subscription-id.secretName}
       selectedRepositoryIds:
         - ${repo-cirun.repoId}
-
-  # Secret: ORGWIDE_TRAVIS_TOKEN
-  gh-org-secret-orgwide-travis-token:
-    type: github:ActionsOrganizationSecret
-    options:
-      protect: false
-      retainOnDelete: true
-      deleteBeforeReplace: false
-    properties:
-      secretName: ORGWIDE_TRAVIS_TOKEN
-      plaintextValue: ${orgwide-travis-token.credential}
-      visibility: selected
-  gh-org-secret-orgwide-travis-token-repos:
-    type: github:ActionsOrganizationSecretRepositories
-    options:
-      protect: false
-      retainOnDelete: true
-      deleteBeforeReplace: false
-    properties:
-      secretName: ${gh-org-secret-orgwide-travis-token.secretName}
-      selectedRepositoryIds:
-        - ${repo-admin-migrations.repoId}
-        - ${repo-admin-requests.repoId}
 
   # Secret: PROD_BINSTAR_TOKEN
   gh-org-secret-prod-binstar-token:
