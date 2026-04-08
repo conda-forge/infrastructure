@@ -19,12 +19,6 @@ variables:
       arguments:
         title: cf-admin-github-token
         vault: pulumi
-  cf-admin-travis-token:
-    fn::invoke:
-      function: onepassword:getItem
-      arguments:
-        title: cf-admin-travis-token
-        vault: pulumi
   cf-bot-dh-password:
     fn::invoke:
       function: onepassword:getItem
@@ -277,28 +271,6 @@ resources:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
-
-  # Secret: CF_ADMIN_TRAVIS_TOKEN
-  gh-org-secret-cf-admin-travis-token:
-    type: github:ActionsOrganizationSecret
-    options:
-      protect: false
-      retainOnDelete: true
-      deleteBeforeReplace: false
-    properties:
-      secretName: CF_ADMIN_TRAVIS_TOKEN
-      plaintextValue: ${cf-admin-travis-token.credential}
-      visibility: selected
-  gh-org-secret-cf-admin-travis-token-repos:
-    type: github:ActionsOrganizationSecretRepositories
-    options:
-      protect: false
-      retainOnDelete: true
-      deleteBeforeReplace: false
-    properties:
-      secretName: ${gh-org-secret-cf-admin-travis-token.secretName}
-      selectedRepositoryIds:
-        - ${repo-admin-requests.repoId}
 
   # Secret: CF_BOT_DH_PASSWORD
   gh-org-cf-bot-dh-password:
