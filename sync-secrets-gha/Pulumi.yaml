@@ -513,7 +513,6 @@ resources:
     properties:
       secretName: ${gh-org-secret-heroku-email.secretName}
       selectedRepositoryIds:
-        - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
 
   # Secret: HEROKU_ONLY_STAGING_BINSTAR_TOKEN
