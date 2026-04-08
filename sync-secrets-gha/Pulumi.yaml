@@ -67,6 +67,12 @@ variables:
       arguments:
         title: cirun-api-key
         vault: pulumi
+  heroku-email:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: heroku-email
+        vault: pulumi
   heroku-api-key:
     fn::invoke:
       function: onepassword:getItem
@@ -484,8 +490,31 @@ resources:
     properties:
       secretName: ${gh-org-secret-heroku-api-key.secretName}
       selectedRepositoryIds:
-        - ${repo-admin-requests.repoId}
         - ${repo-core-notes.repoId}
+        - ${repo-conda-forge-webservices.repoId}
+
+  # Secret: HEROKU_EMAIL
+  gh-org-secret-heroku-email:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: HEROKU_EMAIL
+      plaintextValue: ${heroku-email.credential}
+      visibility: selected
+  gh-org-secret-heroku-email-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-heroku-email.secretName}
+      selectedRepositoryIds:
+        - ${repo-core-notes.repoId}
+        - ${repo-conda-forge-webservices.repoId}
 
   # Secret: HEROKU_ONLY_STAGING_BINSTAR_TOKEN
   gh-org-secret-heroku-only-staging-binstar-token:
