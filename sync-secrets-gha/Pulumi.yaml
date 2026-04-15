@@ -431,7 +431,7 @@ resources:
     options:
       protect: false
       retainOnDelete: true
-      deleteBeforeReplace: true  # temp change to get it to run once
+      deleteBeforeReplace: false
     properties:
       repository: ${repo-staged-recipes.name}
       active: true
