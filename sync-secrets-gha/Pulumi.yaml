@@ -511,23 +511,23 @@ resources:
   #     events:
   #       - push
 
-  # gh-org-webhook-conda-forge-command-org-hook:
-  #   type: github:OrganizationWebhook
-  #   options:
-  #     protect: false
-  #     retainOnDelete: true
-  #     deleteBeforeReplace: false
-  #   properties:
-  #     active: true
-  #     configuration:
-  #       contentType: json
-  #       insecureSsl: false
-  #       secret: ${cf-webservices-token.credential}
-  #       url: https://conda-forge.herokuapp.com/conda-forge-command/org-hook
-  #     events:
-  #       - issue_comment
-  #       - issues
-  #       - pull_request
+  gh-org-webhook-conda-forge-command-org-hook:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/conda-forge-command/org-hook
+      events:
+        - issue_comment
+        - issues
+        - pull_request
 
   gh-org-webhook-status-monitor-payload:
     type: github:OrganizationWebhook
