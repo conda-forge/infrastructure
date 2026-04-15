@@ -218,6 +218,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/.cirun
+  repo-staged-recipes:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/staged-recipes
 resources:
   onepassword-provider:
     type: pulumi:providers:onepassword
@@ -419,6 +424,129 @@ resources:
       selectedRepositoryIds:
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
+
+  # repo webhooks
+  gh-repo-webhook-staged-recipes-labeler-hook:
+    type: github:RepositoryWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      repository: ${repo-staged-recipes.name}
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/staged-recipes/labeler-hook
+      events:
+        - issues
+        - issue_comment
+        - pull_request
+
+  # org webhooks
+  gh-org-webhook-conda-linting-org-hook:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/conda-linting/org-hook
+      events:
+        - pull_request
+
+  gh-org-webhook-conda-forge-feedstocks-org-hook:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/conda-forge-feedstocks/org-hook
+      events:
+        - push
+
+  gh-org-webhook-conda-forge-teams-org-hook:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/conda-forge-teams/org-hook
+      events:
+        - push
+
+  gh-org-webhook-conda-forge-command-org-hook:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/conda-forge-command/org-hook
+      events:
+        - issue_comment
+        - issues
+        - pull_request
+
+  gh-org-webhook-status-monitor-payload:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/status-monitor/payload
+      events:
+        - check_run
+        - check_suite
+        - pull_request
+        - status
+
+  gh-org-webhook-autotickbot-payload:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/autotickbot/payload
+      events:
+        - push
+        - pull_request
 
   # Secret: CIRUN_API_KEY
   gh-org-secret-cirun-api-key:
