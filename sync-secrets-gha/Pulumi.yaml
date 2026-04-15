@@ -529,24 +529,24 @@ resources:
   #       - issues
   #       - pull_request
 
-  # gh-org-webhook-status-monitor-payload:
-  #   type: github:OrganizationWebhook
-  #   options:
-  #     protect: false
-  #     retainOnDelete: true
-  #     deleteBeforeReplace: false
-  #   properties:
-  #     active: true
-  #     configuration:
-  #       contentType: json
-  #       insecureSsl: false
-  #       secret: ${cf-webservices-token.credential}
-  #       url: https://conda-forge.herokuapp.com/status-monitor/payload
-  #     events:
-  #       - check_run
-  #       - check_suite
-  #       - pull_request
-  #       - status
+  gh-org-webhook-status-monitor-payload:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/status-monitor/payload
+      events:
+        - check_run
+        - check_suite
+        - pull_request
+        - status
 
   # Secret: CIRUN_API_KEY
   gh-org-secret-cirun-api-key:
