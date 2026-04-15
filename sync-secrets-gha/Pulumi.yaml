@@ -463,21 +463,21 @@ resources:
         - push
         - pull_request
 
-  # gh-org-webhook-conda-linting-org-hook:
-  #   type: github:OrganizationWebhook
-  #   options:
-  #     protect: false
-  #     retainOnDelete: true
-  #     deleteBeforeReplace: false
-  #   properties:
-  #     active: true
-  #     configuration:
-  #       contentType: json
-  #       insecureSsl: false
-  #       secret: ${cf-webservices-token.credential}
-  #       url: https://conda-forge.herokuapp.com/conda-linting/org-hook
-  #     events:
-  #       - pull_request
+  gh-org-webhook-conda-linting-org-hook:
+    type: github:OrganizationWebhook
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      active: true
+      configuration:
+        contentType: json
+        insecureSsl: false
+        secret: ${cf-webservices-token.credential}
+        url: https://conda-forge.herokuapp.com/conda-linting/org-hook
+      events:
+        - pull_request
 
   # gh-org-webhook-conda-forge-feedstocks-org-hook:
   #   type: github:OrganizationWebhook
