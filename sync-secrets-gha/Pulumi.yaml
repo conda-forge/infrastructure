@@ -157,6 +157,54 @@ variables:
       arguments:
         title: windows-ci-azure-subscription-id
         vault: pulumi
+  windows-signing-account-name:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-account-name
+        vault: pulumi
+  windows-signing-azure-client-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-azure-client-id
+        vault: pulumi
+  windows-signing-azure-client-secret-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-azure-client-secret-id
+        vault: pulumi
+  windows-signing-azure-client-secret-value:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-azure-client-secret-value
+        vault: pulumi
+  windows-signing-azure-subscription-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-azure-subscription-id
+        vault: pulumi
+  windows-signing-azure-tenant-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-azure-tenant-id
+        vault: pulumi
+  windows-signing-endpoint:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-endpoint
+        vault: pulumi
+  windows-signing-profile-name:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: windows-signing-profile-name
+        vault: pulumi
   # get GH repos
   repo-admin-migrations:
     fn::invoke:
@@ -922,6 +970,182 @@ resources:
       secretName: ${gh-org-secret-windows-ci-azure-subscription-id.secretName}
       selectedRepositoryIds:
         - ${repo-cirun.repoId}
+
+  # Secret: WINDOWS_SIGNING_ACCOUNT_NAME
+  gh-org-secret-windows-signing-account-name:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_ACCOUNT_NAME
+      plaintextValue: ${windows-signing-account-name.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-account-name-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-account-name.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_SIGNING_PROFILE_NAME
+  gh-org-secret-windows-signing-profile-name:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_PROFILE_NAME
+      plaintextValue: ${windows-signing-profile-name.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-profile-name-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-profile-name.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_SIGNING_AZURE_CLIENT_ID
+  gh-org-secret-windows-signing-azure-client-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_AZURE_CLIENT_ID
+      plaintextValue: ${windows-signing-azure-client-id.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-azure-client-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-azure-client-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_SIGNING_AZURE_TENANT_ID
+  gh-org-secret-windows-signing-azure-tenant-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_AZURE_TENANT_ID
+      plaintextValue: ${windows-signing-azure-tenant-id.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-azure-tenant-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-azure-tenant-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_SIGNING_AZURE_SUBSCRIPTION_ID
+  gh-org-secret-windows-signing-azure-subscription-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_AZURE_SUBSCRIPTION_ID
+      plaintextValue: ${windows-signing-azure-subscription-id.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-azure-subscription-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-azure-subscription-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_SIGNING_AZURE_CLIENT_SECRET_ID
+  gh-org-secret-windows-signing-azure-client-secret-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_AZURE_CLIENT_SECRET_ID
+      plaintextValue: ${windows-signing-azure-client-secret-id.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-azure-client-secret-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-azure-client-secret-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_SIGNING_AZURE_CLIENT_SECRET_VALUE
+  gh-org-secret-windows-signing-azure-client-secret-value:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_AZURE_CLIENT_SECRET_VALUE
+      plaintextValue: ${windows-signing-azure-client-secret-value.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-azure-client-secret-value-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-azure-client-secret-value.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
+
+  # Secret: WINDOWS_SIGNING_ENDPOINT
+  gh-org-secret-windows-signing-endpoint:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: WINDOWS_SIGNING_ENDPOINT
+      plaintextValue: ${windows-signing-endpoint.credential}
+      visibility: selected
+  gh-org-secret-windows-signing-endpoint-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-windows-signing-endpoint.secretName}
+      selectedRepositoryIds:
+        - ${repo-miniforge.repoId}
 
   # Secret: PROD_BINSTAR_TOKEN
   gh-org-secret-prod-binstar-token:
