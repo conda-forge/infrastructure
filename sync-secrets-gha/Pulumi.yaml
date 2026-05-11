@@ -287,7 +287,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: AZURE_TOKEN
-      plaintextValue: ${azure-token.credential}
+      value: ${azure-token.credential}
       visibility: selected
   gh-org-secret-azure-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -310,7 +310,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_ADMIN_GITHUB_TOKEN
-      plaintextValue: ${cf-admin-github-token.credential}
+      value: ${cf-admin-github-token.credential}
       visibility: selected
   gh-org-secret-cf-admin-github-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -334,7 +334,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_BOT_DH_PASSWORD
-      plaintextValue: ${cf-bot-dh-password.password}
+      value: ${cf-bot-dh-password.password}
       visibility: selected
   gh-org-cf-bot-dh-password-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -359,7 +359,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_CURATOR_APP_ID
-      plaintextValue: ${cf-curator-app-id.credential}
+      value: ${cf-curator-app-id.credential}
       visibility: selected
   gh-org-secret-cf-curator-app-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -387,7 +387,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_CURATOR_PRIVATE_KEY
-      plaintextValue: ${cf-curator-private-key.privateKey}
+      value: ${cf-curator-private-key.privateKey}
       visibility: selected
   gh-org-secret-cf-curator-private-key-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -415,7 +415,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_DAEMON_TRAVIS_TOKEN
-      plaintextValue: ${cf-daemon-travis-token.credential}
+      value: ${cf-daemon-travis-token.credential}
       visibility: selected
   gh-org-secret-cf-daemon-travis-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -437,7 +437,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_LINTER_TRAVIS_TOKEN
-      plaintextValue: ${cf-linter-travis-token.credential}
+      value: ${cf-linter-travis-token.credential}
       visibility: selected
   gh-org-secret-cf-linter-travis-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -459,7 +459,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_WEBSERVICES_TOKEN
-      plaintextValue: ${cf-webservices-token.credential}
+      value: ${cf-webservices-token.credential}
       visibility: selected
   gh-org-secret-cf-webservices-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -605,7 +605,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CIRUN_API_KEY
-      plaintextValue: ${cirun-api-key.credential}
+      value: ${cirun-api-key.credential}
       visibility: selected
   gh-org-secret-cirun-api-key-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -627,7 +627,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: HEROKU_API_KEY
-      plaintextValue: ${heroku-api-key.credential}
+      value: ${heroku-api-key.credential}
       visibility: selected
   gh-org-secret-heroku-api-key-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -650,7 +650,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: HEROKU_EMAIL
-      plaintextValue: ${heroku-email.credential}
+      value: ${heroku-email.credential}
       visibility: selected
   gh-org-secret-heroku-email-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -672,7 +672,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: HEROKU_ONLY_STAGING_BINSTAR_TOKEN
-      plaintextValue: ${heroku-only-staging-binstar-token.credential}
+      value: ${heroku-only-staging-binstar-token.credential}
       visibility: selected
   gh-org-secret-heroku-only-staging-binstar-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -694,7 +694,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: POST_STAGING_BINSTAR_TOKEN
-      plaintextValue: ${post-staging-binstar-token.credential}
+      value: ${post-staging-binstar-token.credential}
       visibility: selected
   gh-org-secret-post-staging-binstar-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -716,7 +716,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: OP_SERVICE_ACCOUNT_TOKEN
-      plaintextValue: ${pulumi-1password-service-account.credential}
+      value: ${pulumi-1password-service-account.credential}
       visibility: selected
   gh-org-secret-op-service-account-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -738,7 +738,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: READ_ORG_ADMIN_TOKEN
-      plaintextValue: ${read-conda-forge-gh-org-as-admin-token.credential}
+      value: ${read-conda-forge-gh-org-as-admin-token.credential}
       visibility: selected
   gh-org-secret-governance-team-checks-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -760,7 +760,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_NOTARIZATION_AUTHKEY_BASE64
-      plaintextValue: ${apple-notarization-authkey-base64.credential}
+      value: ${apple-notarization-authkey-base64.credential}
       visibility: selected
   gh-org-secret-apple-notarization-authkey-base64-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -782,7 +782,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_NOTARIZATION_ISSUER_ID
-      plaintextValue: ${apple-notarization-issuer-id.credential}
+      value: ${apple-notarization-issuer-id.credential}
       visibility: selected
   gh-org-secret-apple-notarization-issuer-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -804,7 +804,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_NOTARIZATION_KEY_ID
-      plaintextValue: ${apple-notarization-key-id.credential}
+      value: ${apple-notarization-key-id.credential}
       visibility: selected
   gh-org-secret-apple-notarization-key-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -826,7 +826,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_CERTIFICATE_INSTALLER_BASE64
-      plaintextValue: ${certificate-macos-installer.username}
+      value: ${certificate-macos-installer.username}
       visibility: selected
   gh-org-secret-certificate-macos-installer-base64-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -848,7 +848,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_CERTIFICATE_INSTALLER_PASSWORD
-      plaintextValue: ${certificate-macos-installer.credential}
+      value: ${certificate-macos-installer.credential}
       visibility: selected
   gh-org-secret-certificate-macos-installer-password-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -870,7 +870,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_CERTIFICATE_APPLICATION_BASE64
-      plaintextValue: ${certificate-macos-application.username}
+      value: ${certificate-macos-application.username}
       visibility: selected
   gh-org-secret-certificate-macos-application-base64-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -892,7 +892,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: MACOS_CERTIFICATE_APPLICATION_PASSWORD
-      plaintextValue: ${certificate-macos-application.credential}
+      value: ${certificate-macos-application.credential}
       visibility: selected
   gh-org-secret-certificate-macos-application-password-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -914,7 +914,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_CI_AZURE_CLIENT_ID
-      plaintextValue: ${windows-ci-azure-client-id.credential}
+      value: ${windows-ci-azure-client-id.credential}
       visibility: selected
   gh-org-secret-windows-ci-azure-client-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -936,7 +936,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_CI_AZURE_TENANT_ID
-      plaintextValue: ${windows-ci-azure-tenant-id.credential}
+      value: ${windows-ci-azure-tenant-id.credential}
       visibility: selected
   gh-org-secret-windows-ci-azure-tenant-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -958,7 +958,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_CI_AZURE_SUBSCRIPTION_ID
-      plaintextValue: ${windows-ci-azure-subscription-id.credential}
+      value: ${windows-ci-azure-subscription-id.credential}
       visibility: selected
   gh-org-secret-windows-ci-azure-subscription-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -980,7 +980,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_ACCOUNT_NAME
-      plaintextValue: ${windows-signing-account-name.credential}
+      value: ${windows-signing-account-name.credential}
       visibility: selected
   gh-org-secret-windows-signing-account-name-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1002,7 +1002,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_PROFILE_NAME
-      plaintextValue: ${windows-signing-profile-name.credential}
+      value: ${windows-signing-profile-name.credential}
       visibility: selected
   gh-org-secret-windows-signing-profile-name-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1024,7 +1024,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_AZURE_CLIENT_ID
-      plaintextValue: ${windows-signing-azure-client-id.credential}
+      value: ${windows-signing-azure-client-id.credential}
       visibility: selected
   gh-org-secret-windows-signing-azure-client-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1046,7 +1046,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_AZURE_TENANT_ID
-      plaintextValue: ${windows-signing-azure-tenant-id.credential}
+      value: ${windows-signing-azure-tenant-id.credential}
       visibility: selected
   gh-org-secret-windows-signing-azure-tenant-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1068,7 +1068,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_AZURE_SUBSCRIPTION_ID
-      plaintextValue: ${windows-signing-azure-subscription-id.credential}
+      value: ${windows-signing-azure-subscription-id.credential}
       visibility: selected
   gh-org-secret-windows-signing-azure-subscription-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1090,7 +1090,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_AZURE_CLIENT_SECRET_ID
-      plaintextValue: ${windows-signing-azure-client-secret-id.credential}
+      value: ${windows-signing-azure-client-secret-id.credential}
       visibility: selected
   gh-org-secret-windows-signing-azure-client-secret-id-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1112,7 +1112,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_AZURE_CLIENT_SECRET_VALUE
-      plaintextValue: ${windows-signing-azure-client-secret-value.credential}
+      value: ${windows-signing-azure-client-secret-value.credential}
       visibility: selected
   gh-org-secret-windows-signing-azure-client-secret-value-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1134,7 +1134,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: WINDOWS_SIGNING_ENDPOINT
-      plaintextValue: ${windows-signing-endpoint.credential}
+      value: ${windows-signing-endpoint.credential}
       visibility: selected
   gh-org-secret-windows-signing-endpoint-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1156,7 +1156,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: PROD_BINSTAR_TOKEN
-      plaintextValue: ${prod-binstar-token.credential}
+      value: ${prod-binstar-token.credential}
       visibility: selected
   gh-org-secret-prod-binstar-token-repos:
     type: github:ActionsOrganizationSecretRepositories
@@ -1179,6 +1179,6 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: STAGING_BINSTAR_TOKEN
-      plaintextValue: ${staging-binstar-token.credential}
+      value: ${staging-binstar-token.credential}
       visibility: all
 outputs: {}
