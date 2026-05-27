@@ -43,12 +43,6 @@ variables:
       arguments:
         title: cf-daemon-quay-password
         vault: pulumi
-  cf-daemon-quay-api-key:
-    fn::invoke:
-      function: onepassword:getItem
-      arguments:
-        title: cf-daemon-quay-api-key
-        vault: pulumi
   cf-daemon-travis-token:
     fn::invoke:
       function: onepassword:getItem
@@ -73,11 +67,11 @@ variables:
       arguments:
         title: cirun-api-key
         vault: pulumi
-  conda-forge-webservices-quay-api-key:
+  conda-forge-quay-api-key:
     fn::invoke:
       function: onepassword:getItem
       arguments:
-        title: conda-forge-webservices-quay-api-key
+        title: conda-forge-quay-api-key
         vault: pulumi
   heroku-email:
     fn::invoke:
@@ -451,29 +445,6 @@ resources:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-docker-images.repoId}
 
-  # Secret: CF_DAEMON_QUAY_API_KEY
-  gh-org-secret-cf-daemon-quay-api-key:
-    type: github:ActionsOrganizationSecret
-    options:
-      protect: false
-      retainOnDelete: true
-      deleteBeforeReplace: false
-    properties:
-      secretName: CF_DAEMON_QUAY_API_KEY
-      value: ${cf-daemon-quay-api-key.credential}
-      visibility: selected
-  gh-org-secret-cf-daemon-quay-api-key-repos:
-    type: github:ActionsOrganizationSecretRepositories
-    options:
-      protect: false
-      retainOnDelete: true
-      deleteBeforeReplace: false
-    properties:
-      secretName: ${gh-org-secret-cf-daemon-quay-api-key.secretName}
-      selectedRepositoryIds:
-        - ${repo-conda-forge-webservices.repoId}
-        - ${repo-docker-images.repoId}
-
   # Secret: CF_DAEMON_TRAVIS_TOKEN
   gh-org-secret-cf-daemon-travis-token:
     type: github:ActionsOrganizationSecret
@@ -686,25 +657,25 @@ resources:
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
 
-  # Secret: CONDA_FORGE_WEBSERVICES_QUAY_API_KEY
-  gh-org-secret-conda-forge-webservices-quay-api-key:
+  # Secret: CONDA_FORGE_QUAY_API_KEY
+  gh-org-secret-conda-forge-quay-api-key:
     type: github:ActionsOrganizationSecret
     options:
       protect: false
       retainOnDelete: true
       deleteBeforeReplace: false
     properties:
-      secretName: CONDA_FORGE_WEBSERVICES_QUAY_API_KEY
-      value: ${conda-forge-webservices-quay-api-key.credential}
+      secretName: CONDA_FORGE_QUAY_API_KEY
+      value: ${conda-forge-quay-api-key.credential}
       visibility: selected
-  gh-org-secret-conda-forge-webservices-quay-api-key-repos:
+  gh-org-secret-conda-forge-quay-api-key-repos:
     type: github:ActionsOrganizationSecretRepositories
     options:
       protect: false
       retainOnDelete: true
       deleteBeforeReplace: false
     properties:
-      secretName: ${gh-org-secret-conda-forge-webservices-quay-api-key.secretName}
+      secretName: ${gh-org-secret-conda-forge-quay-api-key.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-docker-images.repoId}
