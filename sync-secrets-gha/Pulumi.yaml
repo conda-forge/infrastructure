@@ -37,6 +37,18 @@ variables:
       arguments:
         title: cf-curator-private-key
         vault: pulumi
+  cf-daemon-quay-password:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-daemon-quay-password
+        vault: pulumi
+  cf-daemon-quay-api-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-daemon-quay-api-key
+        vault: pulumi
   cf-daemon-travis-token:
     fn::invoke:
       function: onepassword:getItem
@@ -241,6 +253,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/conda-forge-webservices
+  repo-docker-images:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/docker-images
   repo-infrastructure:
     fn::invoke:
       function: github:getRepository
@@ -346,8 +363,7 @@ resources:
       secretName: ${gh-org-cf-bot-dh-password.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-webservices-dispatch-action.repoId}
-        - ${repo-automerge-action.repoId}
+        - ${repo-docker-images.repoId}
         - ${repo-conda-forge-feedstock-ops.repoId}
 
   # Secret: CF_CURATOR_APP_ID
@@ -405,6 +421,52 @@ resources:
         - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-webservices-dispatch-action.repoId}
+
+  # Secret: CF_DAEMON_QUAY_PASSWORD
+  gh-org-secret-cf-daemon-quay-password:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_DAEMON_QUAY_PASSWORD
+      value: ${cf-daemon-quay-password.credential}
+      visibility: selected
+  gh-org-secret-cf-daemon-quay-password-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-cf-daemon-quay-password.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+        - ${repo-docker-images.repoId}
+
+  # Secret: CF_DAEMON_QUAY_API_KEY
+  gh-org-secret-cf-daemon-quay-api-key:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_DAEMON_QUAY_API_KEY
+      value: ${cf-daemon-quay-api-key.credential}
+      visibility: selected
+  gh-org-secret-cf-daemon-quay-api-key-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-cf-daemon-quay-api-key.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+        - ${repo-docker-images.repoId}
 
   # Secret: CF_DAEMON_TRAVIS_TOKEN
   gh-org-secret-cf-daemon-travis-token:
