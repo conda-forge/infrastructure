@@ -73,6 +73,12 @@ variables:
       arguments:
         title: cirun-api-key
         vault: pulumi
+  conda-forge-webservices-quay-api-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: conda-forge-webservices-quay-api-key
+        vault: pulumi
   heroku-email:
     fn::invoke:
       function: onepassword:getItem
@@ -679,6 +685,29 @@ resources:
       secretName: ${gh-org-secret-cirun-api-key.secretName}
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
+
+  # Secret: CONDA_FORGE_WEBSERVICES_QUAY_API_KEY
+  gh-org-secret-conda-forge-webservices-quay-api-key:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CONDA_FORGE_WEBSERVICES_QUAY_API_KEY
+      value: ${conda-forge-webservices-quay-api-key.credential}
+      visibility: selected
+  gh-org-secret-conda-forge-webservices-quay-api-key-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-conda-forge-webservices-quay-api-key.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+        - ${repo-docker-images.repoId}
 
   # Secret: HEROKU_API_KEY
   gh-org-secret-heroku-api-key:
