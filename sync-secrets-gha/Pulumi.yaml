@@ -363,7 +363,7 @@ resources:
       secretName: ${gh-org-cf-bot-dh-password.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-docker-images.repoID}
+        - ${repo-docker-images.repoId}
         - ${repo-conda-forge-feedstock-ops.repoId}
 
   # Secret: CF_CURATOR_APP_ID
@@ -443,7 +443,7 @@ resources:
       secretName: ${gh-org-secret-cf-daemon-quay-password.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-docker-images.repoID}
+        - ${repo-docker-images.repoId}
 
   # Secret: CF_DAEMON_QUAY_API_KEY
   gh-org-secret-cf-daemon-quay-api-key:
@@ -466,7 +466,7 @@ resources:
       secretName: ${gh-org-secret-cf-daemon-quay-api-key.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-docker-images.repoID}
+        - ${repo-docker-images.repoId}
 
   # Secret: CF_DAEMON_TRAVIS_TOKEN
   gh-org-secret-cf-daemon-travis-token:
