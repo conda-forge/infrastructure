@@ -243,6 +243,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/core-notes
+  repo-conda-forge-bot:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/conda-forge-bot
   repo-conda-forge-feedstock-ops:
     fn::invoke:
       function: github:getRepository
@@ -444,6 +449,7 @@ resources:
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-docker-images.repoId}
+        - ${repo-conda-forge-bot.repoId}
 
   # Secret: CF_DAEMON_TRAVIS_TOKEN
   gh-org-secret-cf-daemon-travis-token:
