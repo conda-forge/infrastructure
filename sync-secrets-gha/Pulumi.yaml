@@ -283,6 +283,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/miniforge
+  repo-miniforge-images:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/miniforge-images
   repo-cirun:
     fn::invoke:
       function: github:getRepository
@@ -370,6 +375,7 @@ resources:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-docker-images.repoId}
         - ${repo-conda-forge-feedstock-ops.repoId}
+        - ${repo-miniforge-images.repoId}
 
   # Secret: CF_CURATOR_APP_ID
   gh-org-secret-cf-curator-app-id:
@@ -450,6 +456,7 @@ resources:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-docker-images.repoId}
         - ${repo-conda-forge-bot.repoId}
+        - ${repo-miniforge-images.repoId}
 
   # Secret: CF_DAEMON_TRAVIS_TOKEN
   gh-org-secret-cf-daemon-travis-token:
@@ -685,6 +692,7 @@ resources:
       selectedRepositoryIds:
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-docker-images.repoId}
+        - ${repo-miniforge-images.repoId}
 
   # Secret: HEROKU_API_KEY
   gh-org-secret-heroku-api-key:
