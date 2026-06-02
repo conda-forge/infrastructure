@@ -578,6 +578,7 @@ resources:
         url: https://conda-forge.herokuapp.com/conda-linting/org-hook
       events:
         - pull_request
+        - merge_group
 
   gh-org-webhook-conda-forge-feedstocks-org-hook:
     type: github:OrganizationWebhook
