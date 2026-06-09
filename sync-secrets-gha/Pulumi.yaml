@@ -524,6 +524,7 @@ resources:
       selectedRepositoryIds:
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
+        - ${repo-staged-recipes.repoId}
 
   # repo webhooks
   gh-repo-webhook-staged-recipes-labeler-hook:
