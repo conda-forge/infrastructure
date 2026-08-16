@@ -228,11 +228,6 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/admin-requests
-  repo-automerge-action:
-    fn::invoke:
-      function: github:getRepository
-      arguments:
-        fullName: conda-forge/automerge-action
   repo-by-the-numbers:
     fn::invoke:
       function: github:getRepository
@@ -268,11 +263,6 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/infrastructure
-  repo-webservices-dispatch-action:
-    fn::invoke:
-      function: github:getRepository
-      arguments:
-        fullName: conda-forge/webservices-dispatch-action
   repo-governance:
     fn::invoke:
       function: github:getRepository
@@ -399,11 +389,10 @@ resources:
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
-        - ${repo-automerge-action.repoId}
         - ${repo-by-the-numbers.repoId}
         - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-webservices-dispatch-action.repoId}
+        - ${repo-conda-forge-bot.repoId}
 
   # Secret: CF_CURATOR_PRIVATE_KEY
   gh-org-secret-cf-curator-private-key:
@@ -427,11 +416,10 @@ resources:
       selectedRepositoryIds:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
-        - ${repo-automerge-action.repoId}
         - ${repo-by-the-numbers.repoId}
         - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-webservices-dispatch-action.repoId}
+        - ${repo-conda-forge-bot.repoId}
 
   # Secret: CF_DAEMON_QUAY_PASSWORD
   gh-org-secret-cf-daemon-quay-password:
