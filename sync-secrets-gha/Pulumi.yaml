@@ -410,7 +410,7 @@ resources:
       deleteBeforeReplace: false
     properties:
       secretName: CF_BOT_DATA_MANAGER_PRIVATE_KEY
-      value: ${cf-curator-private-key.privateKey}
+      value: ${cf-bot-data-manager-private-key.privateKey}
       visibility: selected
   gh-org-secret-cf-bot-data-manager-private-key-repos:
     type: github:ActionsOrganizationSecretRepositories
