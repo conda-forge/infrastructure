@@ -29,13 +29,13 @@ variables:
     fn::invoke:
       function: onepassword:getItem
       arguments:
-        title: cf-curator-app-id
+        title: cf-bot-data-manager-app-id
         vault: pulumi
   cf-bot-data-manager-private-key:
     fn::invoke:
       function: onepassword:getItem
       arguments:
-        title: cf-curator-private-key
+        title: cf-bot-data-manager-private-key
         vault: pulumi
   cf-curator-app-id:
     fn::invoke:
