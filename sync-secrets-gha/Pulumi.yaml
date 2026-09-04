@@ -25,6 +25,18 @@ variables:
       arguments:
         title: cf-bot-dh-password
         vault: pulumi
+  cf-bot-data-manager-app-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-curator-app-id
+        vault: pulumi
+  cf-bot-data-manager-private-key:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-curator-private-key
+        vault: pulumi
   cf-curator-app-id:
     fn::invoke:
       function: onepassword:getItem
@@ -366,6 +378,50 @@ resources:
         - ${repo-docker-images.repoId}
         - ${repo-conda-forge-feedstock-ops.repoId}
         - ${repo-miniforge-images.repoId}
+
+  # Secret: CF_BOT_DATA_MANAGER_APP_ID
+  gh-org-secret-cf-bot-data-manager-app-id:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_BOT_DATA_MANAGER_APP_ID
+      value: ${cf-bot-data-manager-app-id.credential}
+      visibility: selected
+  gh-org-secret-cf-bot-data-manager-app-id-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-cf-bot-data-manager-app-id.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-bot.repoId}
+
+  # Secret: CF_BOT_DATA_MANAGER_PRIVATE_KEY
+  gh-org-secret-cf-bot-data-manager-private-key:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: CF_BOT_DATA_MANAGER_PRIVATE_KEY
+      value: ${cf-curator-private-key.privateKey}
+      visibility: selected
+  gh-org-secret-cf-bot-data-manager-private-key-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-cf-bot-data-manager-private-key.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-bot.repoId}
 
   # Secret: CF_CURATOR_APP_ID
   gh-org-secret-cf-curator-app-id:
