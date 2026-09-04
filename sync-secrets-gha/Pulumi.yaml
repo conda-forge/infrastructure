@@ -448,7 +448,6 @@ resources:
         - ${repo-by-the-numbers.repoId}
         - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-conda-forge-bot.repoId}
 
   # Secret: CF_CURATOR_PRIVATE_KEY
   gh-org-secret-cf-curator-private-key:
@@ -475,7 +474,6 @@ resources:
         - ${repo-by-the-numbers.repoId}
         - ${repo-core-notes.repoId}
         - ${repo-conda-forge-webservices.repoId}
-        - ${repo-conda-forge-bot.repoId}
 
   # Secret: CF_DAEMON_QUAY_PASSWORD
   gh-org-secret-cf-daemon-quay-password:
