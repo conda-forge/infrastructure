@@ -313,25 +313,25 @@ resources:
       version: 1.1.4
       pluginDownloadURL: github://api.github.com/1Password/
 
-  # Secret: AUTOTICK_BOT_TOKEN
-  gh-org-secret-autotick-bot-token:
+  # Secret: AUTOTICK_BOT_GH_TOKEN
+  gh-org-secret-autotick-bot-gh-token:
     type: github:ActionsOrganizationSecret
     options:
       protect: false
       retainOnDelete: true
       deleteBeforeReplace: false
     properties:
-      secretName: AUTOTICK_BOT_TOKEN
-      value: ${autotick-bot-token.credential}
+      secretName: AUTOTICK_BOT_GH_TOKEN
+      value: ${autotick-bot-gh-token.credential}
       visibility: selected
-  gh-org-secret-autotick-bot-token-repos:
+  gh-org-secret-autotick-bot-gh-token-repos:
     type: github:ActionsOrganizationSecretRepositories
     options:
       protect: false
       retainOnDelete: true
       deleteBeforeReplace: false
     properties:
-      secretName: ${gh-org-secret-autotick-bot-token.secretName}
+      secretName: ${gh-org-secret-autotick-bot-gh-token.secretName}
       selectedRepositoryIds:
         - ${repo-conda-forge-bot.repoId}
 
