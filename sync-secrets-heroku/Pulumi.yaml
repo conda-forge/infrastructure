@@ -19,6 +19,12 @@ variables:
       arguments:
         title: cf-admin-github-token
         vault: pulumi
+  cf-webservices-feedstock-app-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-webservices-feedstock-app-id
+        vault: pulumi
   cf-webservices-feedstock-private-key:
     fn::invoke:
       function: onepassword:getItem
@@ -30,6 +36,12 @@ variables:
       function: onepassword:getItem
       arguments:
         title: cf-webservices-token
+        vault: pulumi
+  cf-webservices-app-id:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: cf-webservices-app-id
         vault: pulumi
   cf-webservices-private-key:
     fn::invoke:
@@ -73,7 +85,9 @@ resources:
         appId: ${heroku-app.id}
         sensitiveVars:
             AUTOTICK_BOT_GH_TOKEN: ${autotick-bot-gh-token.credential}
+            CF_WEBSERVICES_FEEDSTOCK_APP_ID: ${cf-webservices-feedstock-app-id.credential}
             CF_WEBSERVICES_FEEDSTOCK_PRIVATE_KEY: ${cf-webservices-feedstock-private-key.credential}
+            CF_WEBSERVICES_APP_ID: ${cf-webservices-app-id.credential}
             CF_WEBSERVICES_PRIVATE_KEY: ${cf-webservices-private-key.credential}
             CF_WEBSERVICES_TOKEN: ${cf-webservices-token.credential}
             GH_TOKEN: ${cf-admin-github-token.credential}

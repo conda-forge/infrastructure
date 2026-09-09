@@ -7,6 +7,12 @@ config:
         value: conda-forge
 variables:
   # get 1password secrets
+  autotick-bot-gh-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: autotick-bot-gh-token
+        vault: pulumi
   azure-token:
     fn::invoke:
       function: onepassword:getItem
@@ -307,6 +313,28 @@ resources:
       version: 1.1.4
       pluginDownloadURL: github://api.github.com/1Password/
 
+  # Secret: AUTOTICK_BOT_GH_TOKEN
+  gh-org-secret-autotick-bot-gh-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: AUTOTICK_BOT_GH_TOKEN
+      value: ${autotick-bot-gh-token.credential}
+      visibility: selected
+  gh-org-secret-autotick-bot-gh-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-autotick-bot-gh-token.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-bot.repoId}
+
   # Secret: AZURE_TOKEN
   gh-org-secret-azure-token:
     type: github:ActionsOrganizationSecret
@@ -353,6 +381,7 @@ resources:
         - ${repo-admin-requests.repoId}
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
+        - ${repo-conda-forge-feedstock-ops.repoId}
 
   # Secret: CF_BOT_DH_PASSWORD
   gh-org-cf-bot-dh-password:
