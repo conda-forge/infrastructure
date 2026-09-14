@@ -387,7 +387,7 @@ resources:
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-conda-forge-feedstock-ops.repoId}
-        - ${repo-release.repoID}
+        - ${repo-release.repoId}
 
   # Secret: CF_BOT_DH_PASSWORD
   gh-org-cf-bot-dh-password:
