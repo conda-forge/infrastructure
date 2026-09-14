@@ -306,6 +306,11 @@ variables:
       function: github:getRepository
       arguments:
         fullName: conda-forge/staged-recipes
+  repo-release:
+    fn::invoke:
+      function: github:getRepository
+      arguments:
+        fullName: conda-forge/release
 resources:
   onepassword-provider:
     type: pulumi:providers:onepassword
@@ -382,6 +387,7 @@ resources:
         - ${repo-admin-migrations.repoId}
         - ${repo-conda-forge-webservices.repoId}
         - ${repo-conda-forge-feedstock-ops.repoId}
+        - ${repo-release.repoId}
 
   # Secret: CF_BOT_DH_PASSWORD
   gh-org-cf-bot-dh-password:
