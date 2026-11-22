@@ -235,6 +235,18 @@ variables:
       arguments:
         title: windows-signing-profile-name
         vault: pulumi
+  prefix-dev-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: prefix-dev-token
+        vault: pulumi
+  prefix-dev-channel:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: prefix-dev-channel
+        vault: pulumi
   # get GH repos
   repo-admin-migrations:
     fn::invoke:
@@ -1336,4 +1348,49 @@ resources:
       secretName: STAGING_BINSTAR_TOKEN
       value: ${staging-binstar-token.credential}
       visibility: all
+
+  # Secret: PROD_PREFIX_DEV_TOKEN
+  gh-org-secret-prefix-dev-token:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: PREFIX_DEV_TOKEN
+      value: ${prefix-dev-token.credential}
+      visibility: selected
+  gh-org-secret-prefix-dev-token-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-prefix-dev-token.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+
+  # Secret: PREFIX_DEV_CHANNEL
+  gh-org-secret-prefix-dev-channel:
+    type: github:ActionsOrganizationSecret
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: PREFIX_DEV_CHANNEL
+      value: ${prefix-dev-channel.credential}
+      visibility: selected
+  gh-org-secret-prefix-dev-channel-repos:
+    type: github:ActionsOrganizationSecretRepositories
+    options:
+      protect: false
+      retainOnDelete: true
+      deleteBeforeReplace: false
+    properties:
+      secretName: ${gh-org-secret-prefix-dev-channel.secretName}
+      selectedRepositoryIds:
+        - ${repo-conda-forge-webservices.repoId}
+
 outputs: {}
