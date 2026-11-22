@@ -1349,7 +1349,7 @@ resources:
       value: ${staging-binstar-token.credential}
       visibility: all
 
-  # Secret: PROD_PREFIX_DEV_TOKEN
+  # Secret: PREFIX_DEV_TOKEN
   gh-org-secret-prefix-dev-token:
     type: github:ActionsOrganizationSecret
     options:
