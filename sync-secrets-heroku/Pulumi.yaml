@@ -67,6 +67,18 @@ variables:
       arguments:
         title: prod-binstar-token
         vault: pulumi
+  prefix-dev-token:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: prefix-dev-token
+        vault: pulumi
+  prefix-dev-channel:
+    fn::invoke:
+      function: onepassword:getItem
+      arguments:
+        title: prefix-dev-channel
+        vault: pulumi
   # get target heroku app
   heroku-app:
     fn::invoke:
@@ -94,4 +106,6 @@ resources:
             PROD_BINSTAR_TOKEN: ${prod-binstar-token.credential}
             STAGING_BINSTAR_TOKEN: ${heroku-only-staging-binstar-token.credential}
             POST_STAGING_BINSTAR_TOKEN: ${post-staging-binstar-token.credential}
+            PREFIX_DEV_TOKEN: ${prefix-dev-token.credential}
+            PREFIX_DEV_CHANNEL: ${prefix-dev-channel.credential}
 outputs: {}
