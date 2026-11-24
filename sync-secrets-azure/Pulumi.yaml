@@ -51,11 +51,11 @@ resources:
         - name: BINSTAR_TOKEN
           # DO _NOT_ SET TO PROD-BINSTAR!!!
           # Using staging here too is intentional, NOT a mistake.
-          secretValue: ${staging-binstar-token.credential}
-          isSecret: true
+          secret_value: ${staging-binstar-token.credential}
+          is_secret: true
         - name: STAGING_BINSTAR_TOKEN
-          secretValue: ${staging-binstar-token.credential}
-          isSecret: true
+          secret_value: ${staging-binstar-token.credential}
+          is_secret: true
   anacondaOrgVariableGroupCdtBuilds:
     type: azuredevops:VariableGroup
     name: anaconda-org-cdt-builds
@@ -66,6 +66,6 @@ resources:
       allowAccess: true
       variables:
         - name: BINSTAR_TOKEN
-          secretValue: ${prod-binstar-token.credential}
-          isSecret: true
+          secret_value: ${prod-binstar-token.credential}
+          is_secret: true
 outputs: {}
